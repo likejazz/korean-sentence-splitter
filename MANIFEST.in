@@ -1,0 +1,4 @@
+include kss.pyx
+include sentence_splitter.*
+include setup.py
+exclude kss.cpp
