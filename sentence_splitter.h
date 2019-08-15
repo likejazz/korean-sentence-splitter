@@ -54,7 +54,7 @@ namespace kss {
                 {"랐", ID::PREV}, {"럽", ID::PREV}, {"렵", ID::PREV}, {"렸", ID::PREV},
                 {"린", ID::PREV}, {"뤘", ID::PREV},
 
-                {"맞", ID::PREV}, {"밌", ID::PREV},
+                {"밌", ID::PREV},
 
                 {"봤", ID::PREV},
 
