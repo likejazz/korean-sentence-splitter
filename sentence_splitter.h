@@ -44,7 +44,7 @@ namespace kss {
         map ({
             {Stats::DA, {
                 {"갔", ID::PREV}, {"간", ID::PREV}, {"겠", ID::PREV}, {"겼", ID::PREV},
-                {"같", ID::PREV}, {"깝", ID::PREV},
+                {"같", ID::PREV},
 
                 {"놨", ID::PREV}, {"녔", ID::PREV}, {"니", ID::PREV}, {"낸", ID::PREV},
                 {"냈", ID::PREV},
@@ -58,25 +58,25 @@ namespace kss {
 
                 {"봤", ID::PREV},
 
-                {"서", ID::PREV}, {"섰", ID::PREV}, {"샜", ID::PREV}, {"쓴", ID::PREV},
-                {"시", ID::PREV}, {"싫", ID::PREV},
+                {"서", ID::PREV}, {"섰", ID::PREV}, {"샜", ID::PREV},
 
                 {"않", ID::PREV}, {"았", ID::PREV}, {"없", ID::PREV}, {"었", ID::PREV},
                 {"였", ID::PREV}, {"온", ID::PREV}, {"웠", ID::PREV}, {"이", ID::PREV},
                 {"인", ID::PREV}, {"있", ID::PREV},
 
-                {"졌", ID::PREV}, {"좋", ID::PREV},
+                {"졌", ID::PREV},
 
                 {"쳤", ID::PREV}, {"챘", ID::PREV},
 
                 {"팠", ID::PREV}, {"펐", ID::PREV},
 
-                {"한", ID::PREV}, {"했", ID::PREV}, {"혔", ID::PREV},
+                {"했", ID::PREV}, {"혔", ID::PREV},
 
                 {"가", ID::NEXT},
                 {"고", ID::NEXT | ID::NEXT2},
                 {"는", ID::NEXT | ID::NEXT2},
                 {"라", ID::NEXT},
+                {"를", ID::NEXT},
                 {"만", ID::NEXT},
                 {"며", ID::NEXT | ID::NEXT2},
                 {"면", ID::NEXT | ID::NEXT1 | ID::NEXT2},
@@ -111,6 +111,7 @@ namespace kss {
                 {"고", ID::PREV | ID::NEXT2},
                 {"는", ID::NEXT},
                 {"라", ID::NEXT1},
+                {"를", ID::NEXT},
                 {"며", ID::NEXT2},
                 {"면", ID::PREV | ID::NEXT2},
                 {"하", ID::NEXT1},
