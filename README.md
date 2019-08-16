@@ -17,9 +17,7 @@
 
 Split Korean text into sentences using heuristic algorithm. This algorithm was greatly inspired by EungGyun Kim <jason.eg@kakaocorp.com> who is Kakao NLP Leader and one of the most brilliant NLP Engineers in Korea.
 
-I've started this project inspired by [this article](http://semantics.kr/%ED%95%9C%EA%B5%AD%EC%96%B4-%ED%98%95%ED%83%9C%EC%86%8C-%EB%B6%84%EC%84%9D%EA%B8%B0-%EB%B3%84-%EB%AC%B8%EC%9E%A5-%EB%B6%84%EB%A6%AC-%EC%84%B1%EB%8A%A5%EB%B9%84%EA%B5%90/) and we've achieved best result on the test set.
-
-It's very robust to both Spoken and Written expressions.
+I've started this project inspired by [this article](http://semantics.kr/%ED%95%9C%EA%B5%AD%EC%96%B4-%ED%98%95%ED%83%9C%EC%86%8C-%EB%B6%84%EC%84%9D%EA%B8%B0-%EB%B3%84-%EB%AC%B8%EC%9E%A5-%EB%B6%84%EB%A6%AC-%EC%84%B1%EB%8A%A5%EB%B9%84%EA%B5%90/) and we've achieved best result on the test set. And of course, It's very robust to both Spoken and Written expressions.
 
 # Installation
 The package is listed in the Python Package Index (PyPI), so you can install it with pip:
