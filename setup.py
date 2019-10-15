@@ -1,5 +1,4 @@
 import platform
-import sys
 
 from Cython.Build import cythonize
 
@@ -50,5 +49,5 @@ setup(name='kss',
           "License :: OSI Approved :: BSD License",
           "Operating System :: OS Independent",
       ],
-      ext_modules=cythonize(ext, language_level=sys.version_info[0])
+      ext_modules=cythonize(ext, language_level=3)
       )
