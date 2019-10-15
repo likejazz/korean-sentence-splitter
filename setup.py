@@ -49,5 +49,5 @@ setup(name='kss',
           "License :: OSI Approved :: BSD License",
           "Operating System :: OS Independent",
       ],
-      ext_modules=cythonize(ext, language_level="3")
+      ext_modules=cythonize(ext, language_level=3)
       )
