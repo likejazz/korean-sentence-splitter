@@ -82,6 +82,7 @@ std::vector<std::string> splitSentences(const std::string &text) {
     using namespace kss;
 
     std::string prevChr;
+    std::string prevPrevChr;
     std::string curSentence;
 
     std::vector<std::string> results;
@@ -96,23 +97,19 @@ std::vector<std::string> splitSentences(const std::string &text) {
 
         if (curStat == Stats::DEFAULT) {
             switch (str2hash(chrString.c_str())) {
-                case str2hash("\""):
+                case str2hash("\""):    // Double Quotes
+                case str2hash("“"):
                     doPushPopSymbol(stack, "\"");
                     break;
-                case str2hash("'"):
-                    doPushPopSymbol(stack, "'");
+                case str2hash("”"):
+                    if (!stack.empty()) stack.pop();
                     break;
+                case str2hash("'"):     // Single Quotes
                 case str2hash("´"):
-                    doPushPopSymbol(stack, "'");
-                    break;
                 case str2hash("‘"):
-                    stack.push("‘");
-                    break;
-                case str2hash("“"):
-                    stack.push("“");
+                    doPushPopSymbol(stack, "'");
                     break;
                 case str2hash("’"):
-                case str2hash("”"):
                     if (!stack.empty()) stack.pop();
                     break;
                 case str2hash("다"):
@@ -125,6 +122,27 @@ std::vector<std::string> splitSentences(const std::string &text) {
                 case str2hash("!"):
                 case str2hash("?"):
                     if (stack.empty() && map[Stats::SB][prevChr] & ID::PREV) curStat = Stats::SB;
+                    break;
+                case str2hash("s"):     // He's, She's
+                    if (prevChr == "'") {
+                        if (prevPrevChr == "e") {
+                            stack.pop();
+                        }
+                    }
+                    break;
+                case str2hash("m"):     // I'm
+                    if (prevChr == "'") {
+                        if (prevPrevChr == "I") {
+                            stack.pop();
+                        }
+                    }
+                    break;
+                case str2hash("d"):     // e'd
+                    if (prevChr == "'") {
+                        if (prevPrevChr == "e") {
+                            stack.pop();
+                        }
+                    }
                     break;
             }
         } else {
@@ -195,19 +213,18 @@ std::vector<std::string> splitSentences(const std::string &text) {
                 // It's not a good design we suppose, but it's the best unless we change the whole structure.
                 switch (str2hash(chrString.c_str())) {
                     case str2hash("\""):
+                    case str2hash("“"):
                         doPushPopSymbol(stack, "\"");
                         break;
+                    case str2hash("”"):
+                        if (!stack.empty()) stack.pop();
+                        break;
                     case str2hash("'"):
+                    case str2hash("´"):
+                    case str2hash("‘"):
                         doPushPopSymbol(stack, "'");
                         break;
-                    case str2hash("‘"):
-                        stack.push("‘");
-                        break;
-                    case str2hash("“"):
-                        stack.push("“");
-                        break;
                     case str2hash("’"):
-                    case str2hash("”"):
                         if (!stack.empty()) stack.pop();
                         break;
                 }
@@ -222,6 +239,7 @@ std::vector<std::string> splitSentences(const std::string &text) {
         if (curStat == Stats::DEFAULT || !(map[curStat][chrString] & ID::NEXT1)) {
             curSentence.append(chrString);
         }
+        prevPrevChr = prevChr;
         prevChr = chrString;
         i += len;
     }

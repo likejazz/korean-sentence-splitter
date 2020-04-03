@@ -20,6 +20,9 @@ if platform.system() == 'Linux':
 elif platform.system() == 'Darwin':
     extra_compile_args=['-std=c++11', '-stdlib=libc++']
     extra_link_args=['-stdlib=libc++']
+elif platform.system() == 'Windows':
+    extra_compile_args=['/utf-8']
+    extra_link_args=[]
 
 ext = [
     Extension('kss',
@@ -35,7 +38,7 @@ ext = [
 ]
 
 setup(name='kss',
-      version='1.2.5',
+      version='1.3.0',
       author='Sang-Kil Park',
       author_email='skpark1224@hyundai.com',
       url='https://github.com/likejazz/korean-sentence-splitter',
