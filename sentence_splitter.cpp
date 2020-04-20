@@ -76,6 +76,18 @@ namespace kss {
             }
         }
     }
+
+    void processSingleQuotes(unsigned int hash, const std::string &str, const std::string &prevChr,
+                             const std::string &prevPrevChr, std::stack<std::string> &stack) {
+        // str[1] must be single quotation mark(').
+        if (hash == str2hash(str.substr(2, 1).c_str())) {
+            if (str2hash(prevChr.c_str()) == str2hash(str.substr(1, 1).c_str())) {
+                if (str2hash(prevPrevChr.c_str()) == str2hash(str.substr(0, 1).c_str())) {
+                    doPushPopSymbol(stack, "'");
+                }
+            }
+        }
+    }
 } // kss
 
 std::vector<std::string> splitSentences(const std::string &text) {
@@ -99,18 +111,14 @@ std::vector<std::string> splitSentences(const std::string &text) {
             switch (str2hash(chrString.c_str())) {
                 case str2hash("\""):    // Double Quotes
                 case str2hash("“"):
-                    doPushPopSymbol(stack, "\"");
-                    break;
                 case str2hash("”"):
-                    if (!stack.empty()) stack.pop();
+                    doPushPopSymbol(stack, "\"");
                     break;
                 case str2hash("'"):     // Single Quotes
                 case str2hash("´"):
                 case str2hash("‘"):
-                    doPushPopSymbol(stack, "'");
-                    break;
                 case str2hash("’"):
-                    if (!stack.empty()) stack.pop();
+                    doPushPopSymbol(stack, "'");
                     break;
                 case str2hash("다"):
                     if (stack.empty() && map[Stats::DA][prevChr] & ID::PREV) curStat = Stats::DA;
@@ -123,28 +131,13 @@ std::vector<std::string> splitSentences(const std::string &text) {
                 case str2hash("?"):
                     if (stack.empty() && map[Stats::SB][prevChr] & ID::PREV) curStat = Stats::SB;
                     break;
-                case str2hash("s"):     // He's, She's
-                    if (prevChr == "'") {
-                        if (prevPrevChr == "e") {
-                            stack.pop();
-                        }
-                    }
-                    break;
-                case str2hash("m"):     // I'm
-                    if (prevChr == "'") {
-                        if (prevPrevChr == "I") {
-                            stack.pop();
-                        }
-                    }
-                    break;
-                case str2hash("d"):     // e'd
-                    if (prevChr == "'") {
-                        if (prevPrevChr == "e") {
-                            stack.pop();
-                        }
-                    }
-                    break;
             }
+
+            processSingleQuotes(str2hash(chrString.c_str()), "e's", prevChr, prevPrevChr, stack);     // He's, She's, There's
+            processSingleQuotes(str2hash(chrString.c_str()), "I'm", prevChr, prevPrevChr, stack);     // I'm
+            processSingleQuotes(str2hash(chrString.c_str()), "e'd", prevChr, prevPrevChr, stack);     // He'd
+            processSingleQuotes(str2hash(chrString.c_str()), "n's", prevChr, prevPrevChr, stack);     // Men's
+            processSingleQuotes(str2hash(chrString.c_str()), "n't", prevChr, prevPrevChr, stack);     // doesn't
         } else {
             if (isspace(*chrString.c_str()) || // Space
                 map[Stats::COMMON][chrString] & ID::CONT) {
@@ -214,18 +207,14 @@ std::vector<std::string> splitSentences(const std::string &text) {
                 switch (str2hash(chrString.c_str())) {
                     case str2hash("\""):
                     case str2hash("“"):
-                        doPushPopSymbol(stack, "\"");
-                        break;
                     case str2hash("”"):
-                        if (!stack.empty()) stack.pop();
+                        doPushPopSymbol(stack, "\"");
                         break;
                     case str2hash("'"):
                     case str2hash("´"):
                     case str2hash("‘"):
-                        doPushPopSymbol(stack, "'");
-                        break;
                     case str2hash("’"):
-                        if (!stack.empty()) stack.pop();
+                        doPushPopSymbol(stack, "'");
                         break;
                 }
                 goto endif;

@@ -52,11 +52,16 @@ TEST(Sentence, Input) {
                 testing::ElementsAre("기회가 되면 다들 꼭 들러보세요.....!", "하"));
     ASSERT_THAT(splitSentences("He's sexy 'man' 이다. Yeah!"),
                 testing::ElementsAre("He's sexy 'man' 이다.", "Yeah!"));
+    ASSERT_THAT(splitSentences(
+            "The reason I booked this hostel was there'a a only for women's room. But my room was mixed room that doesn't have partitions or curtains. I claimed and asked for changing the room but there's"),
+                testing::ElementsAre(
+                        "The reason I booked this hostel was there'a a only for women's room. But my room was mixed room that doesn't have partitions or curtains. I claimed and asked for changing the room but there's"));
 }
 
 TEST(Sentence, NewFeature) {
-    ASSERT_THAT(splitSentences("He's sexy 'man' 이다. Yeah!"),
-                testing::ElementsAre("He's sexy 'man' 이다.", "Yeah!"));
+    ASSERT_THAT(splitSentences(
+            "The reason I booked this hostel was there'a a only for women's room. But my room was mixed room that doesn't have partitions or curtains. I claimed and asked for changing the room but there's"),
+                testing::ElementsAre(""));
 }
 
 TEST(Sentence, MapCheck) {

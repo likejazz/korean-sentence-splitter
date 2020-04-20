@@ -38,7 +38,7 @@ ext = [
 ]
 
 setup(name='kss',
-      version='1.3.0',
+      version='1.3.1',
       author='Sang-Kil Park',
       author_email='skpark1224@hyundai.com',
       url='https://github.com/likejazz/korean-sentence-splitter',
