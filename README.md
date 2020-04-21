@@ -86,7 +86,7 @@ The result is shown below:
 ```
 
 ## Python
-Python wrapper has implemented using Cython. You can execute build tasks by the command below.
+Python wrapper has implemented using Cython. You can execute build tasks by the command below:
 ```bash
 $ python setup.py install --record files.txt
 or
