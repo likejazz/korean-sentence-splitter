@@ -7,6 +7,8 @@
     - [Usage](#usage)
     - [Demo](#demo)
     - [Requirements](#requirements)
+        - [Mac, Linux](#mac-linux)
+        - [Windows](#windows)
 - [Build from scratch](#build-from-scratch)
     - [C++](#c)
     - [Python](#python)
@@ -46,11 +48,19 @@ The result is shown below:
 <img src="https://raw.githubusercontent.com/likejazz/korean-sentence-splitter/master/assets/screenshot.png">
 
 ## Requirements
+### Mac, Linux
 - C++11
     - GCC or Clang with C++11 build supported.
-- Python 3
+- Python 3+
 
-Google Test binary provided was built on macOS.
+NOTICE: Google Test binary provided was built on macOS.
+### Windows
+- Microsoft C++ Build Tools
+- Python 3+
+- Cython  
+```console
+$ pip install cython
+```
 
 # Build from scratch
 ## C++
