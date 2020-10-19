@@ -27,7 +27,7 @@ def split_sentences_index(text) -> List[SentenceIndex]:
     return [get_sentence_index(sentence) for sentence in sentences]
 
 
-def split_chunks(text: str, max_length=128, overlap=True, indexes=None) -> List[ChunkWithIndex]:
+def split_chunks(text: str, max_length=128, overlap=False, indexes=None) -> List[ChunkWithIndex]:
     def get_chunk_with_index():
         start = span[0].start
         end = span[-1].end
